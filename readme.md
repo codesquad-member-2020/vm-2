@@ -2,11 +2,17 @@
 
 **master** : 마지막에 dev와 vm-ui 를 merge하는 브랜치
 
-**vm-ui** : 자판기 html, css 작성 파일 commit하는 브랜치
+**dev** : PR 보내는 브랜치
 
-**dev** : 자판기 동작 파일 commit하는 브랜치
+**feature/ui** : HTML, CSS 작성 + 상품 데이터 렌더링
 
+**feature/product-view** : 상품 화면 작동 기능
 
+**feature/product-select** : 상품 선택 화면 작동 기능
+
+**feature/wallet** : 지갑 화면 작동 기능
+
+**feature/contoller** : 금액 데이터 제어 
 
 # 코드 짜는 규칙
 
