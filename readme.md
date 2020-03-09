@@ -21,5 +21,6 @@
 
 # 자판기 UI 설계도  
 
-![img](https://i.imgur.com/stfiNVG.jpg)  
+![img](https://i.imgur.com/N7ms6Qc.jpg)
+
 
