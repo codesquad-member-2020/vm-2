@@ -19,6 +19,7 @@
 - 클래스 위주로 작성하기
 - 작은 단위의 기능은 함수로 작성하기
 
-# 자판기 UI 설계도
+# 자판기 UI 설계도  
 
-![ui](https://user-images.githubusercontent.com/30427711/76198193-f82ef280-6230-11ea-9fe1-8a2ba2e16e20.jpg)
+![img](https://i.imgur.com/stfiNVG.jpg)  
+
