@@ -64,3 +64,34 @@
 .wallet {
   width: 20%;
 }
+
+.money-unit {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.money-unit button,
+.money-unit span {
+  width: 50%;
+  text-align: center;
+}
+
+.money-unit span:after {
+  margin-right: -30px;
+  margin-top: -50px;
+  display: block;
+  clear: both;
+  content: '개';
+}
+
+.total-money {
+  text-align: center;
+}
+.total-money:after {
+  display: inline-block;
+  clear: both;
+  content: '원';
+  margin-left: 6px;
+}
