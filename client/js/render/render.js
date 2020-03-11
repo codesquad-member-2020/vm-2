@@ -39,7 +39,6 @@ const productList = list => {
     <button>
       <div class="product-image"><span>${productIndex}</span>${productImg}</div>
       <div class="product-content">
-        <strong>${productName}</strong>
         <span>${productPrice}</span>
       </div>
     </button>
