@@ -49,15 +49,49 @@
 }
 
 .product-image {
+  position: relative;
   height: 30px;
   font-size: 20px;
 }
 
+.product-image > span {
+  position: absolute;
+  left: -5px;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 14px;
+}
+
 .product-content {
+  position: relative;
+  left: -9px;
+  width: 137%;
   height: 20px;
   line-height: 20px;
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.8);
   border-radius: 10px;
+}
+
+.product-content:after {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  display: block;
+  clear: both;
+  content:'원';
+}
+
+.product-content > strong {
+  position: absolute;
+  left: 4px;
+}
+
+.product-content > span {
+  position: absolute;
+  right: 13px;
 }
 
 .product-select {
@@ -157,6 +191,13 @@
   background-color: #A6A6A6;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.money-unit button:after {
+  display: inline-block;
+  margin-left: 2px;
+  clear: both;
+  content: '원';
 }
 
 .money-unit button:hover {
