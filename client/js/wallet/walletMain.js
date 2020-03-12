@@ -7,3 +7,7 @@ const totalMoney = document.querySelector(".total-money");
 
 const walletModel = new WalletModel();
 const walletView = new WalletView(walletModel, root, totalMoney);
+
+useButton.forEach(el => {
+  el.addEventListener('click', walletModel.useButton.bind(walletModel));
+})
