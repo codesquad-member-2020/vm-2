@@ -79,7 +79,10 @@ const addWallet = (currency, amount) => {
   currency.forEach(walletInfo => {
     const {walletAmount, numberCount} = walletInfo;
 
-    moneyWrap += `<div class="money-unit"><button>${walletAmount}</button><span>${numberCount}</span></div>`;
+    moneyWrap += `
+    <div class="money-unit">
+    <button type="button" value="${walletAmount}">${walletAmount}</button>
+    <span value="${numberCount}">${numberCount}</span></div>`;
   });
 
   const wallet = `
@@ -87,7 +90,7 @@ const addWallet = (currency, amount) => {
     <div class="money-wrap">
       ${moneyWrap}
     </div>
-    <div class="total-money">${amount}</div>
+    <div class="total-money" value="${amount}">${amount}</div>
   </div>`;
 
   return wallet;

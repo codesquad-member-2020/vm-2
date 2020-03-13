@@ -3,12 +3,19 @@ import Observable from "../observable.js";
 class WalletModel extends Observable {
   constructor() {
     super();
-    this.state = 0; // 초기 값 데이터 추가 예정
   }
 
-  useButton() {
-    this.state -= 1;
-    this.notify(this.state);
+  useButtons(target, value) {
+    if (Number(value) <= 0) return;
+    value -= 1;
+    this.notify({target: target, value: value});
+  }
+
+  calculateTotalMoney(target, totalMoney, currency) {
+    totalMoney -= currency;
+    if (totalMoney < 0) return;
+
+    this.notify({target: target, value: totalMoney});
   }
 }
 
