@@ -2,16 +2,28 @@ import WalletView from "./walletView.js";
 import WalletModel from "./walletModel.js";
 
 const moneyWrap = document.querySelector(".money-wrap");
-const totalMoney = document.querySelector(".total-money");
 
 const walletModel = new WalletModel();
 const walletView = new WalletView(walletModel);
 
 moneyWrap.addEventListener('click', (event)=> {
+  deliverUnitMoney(event);
+})
+
+const deliverUnitMoney = event => {
   const selectedBtn = event.target.type;
   const selectedCnt = event.target.nextElementSibling.innerText;
   const target = event.target.nextElementSibling;
+  
+  if (selectedBtn !== 'button' || selectedCnt <= 0) return;
+  walletModel.useButtons(target, selectedCnt);
+  deliverTotalAmount(event);
+}
 
-  if (selectedBtn !== 'button') return;
-  walletModel.useButtons(target, selectedCnt)
-})
+const deliverTotalAmount = event => {
+  const totalMoneyWrap = document.querySelector(".total-money");
+  const totalMoneyValue = totalMoneyWrap.innerText;
+  const selectedMoney = event.target.innerText;
+
+  walletModel.calculateTotalMoney(totalMoneyWrap, totalMoneyValue, selectedMoney);
+}
