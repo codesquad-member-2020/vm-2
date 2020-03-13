@@ -1,12 +1,12 @@
 class WalletView {
-  constructor(walletModel, target) {
-    this.target = target;
+  constructor(walletModel) {
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
   }
-
+  
   render(data) {
-    this.target.innerHTML = `${data}`;
+    const {target, value} = data;
+    target.innerHTML = `${value}`;
   }
 }
 
