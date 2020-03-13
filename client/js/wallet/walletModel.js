@@ -13,7 +13,7 @@ class WalletModel extends Observable {
 
   calculateTotalMoney(target, totalMoney, currency) {
     totalMoney -= currency;
-    if (totalMoney <= 0) return;
+    if (totalMoney < 0) return;
 
     this.notify({target: target, value: totalMoney});
   }
