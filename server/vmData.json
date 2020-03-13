@@ -121,6 +121,39 @@
       "productPrice": "10000"
     }
   ],
-  "currencyList": [10, 50, 100, 500, 1000, 5000, 10000, 50000],
-  "totalAmount": 22500
+  "wallet": [
+    {
+      "walletAmount": 10,
+      "numberCount": 0
+    },
+    {
+      "walletAmount": 50,
+      "numberCount": 1
+    },
+    {
+      "walletAmount": 100,
+      "numberCount": 5
+    },
+    {
+      "walletAmount": 500,
+      "numberCount": 5
+    },
+    {
+      "walletAmount": 1000,
+      "numberCount": 2
+    },
+    {
+      "walletAmount": 5000,
+      "numberCount": 2
+    },
+    {
+      "walletAmount": 10000,
+      "numberCount": 1
+    },
+    {
+      "walletAmount": 50000,
+      "numberCount": 0
+    }
+  ],
+  "totalAmount": 25050
 }

@@ -9,7 +9,7 @@ const render = data => {
     <div class="wrap">
       ${addProductList(data.productInfoList)}
       ${addProductSelect()}
-      ${addWallet(data.currencyList, data.totalAmount)}
+      ${addWallet(data.wallet ,data.totalAmount)}
     </div>`;
   const body = document.querySelector("body");
 
@@ -76,8 +76,13 @@ const addProductSelect = () => {
 
 const addWallet = (currency, amount) => {
   let moneyWrap = ``;
-  currency.forEach(el => {
-    moneyWrap += `<div class="money-unit"><button>${el}</button><span>0</span></div>`;
+  currency.forEach(walletInfo => {
+    const {walletAmount, numberCount} = walletInfo;
+
+    moneyWrap += `
+    <div class="money-unit">
+    <button type="button" value="${walletAmount}">${walletAmount}</button>
+    <span value="${numberCount}">${numberCount}</span></div>`;
   });
 
   const wallet = `
@@ -85,7 +90,7 @@ const addWallet = (currency, amount) => {
     <div class="money-wrap">
       ${moneyWrap}
     </div>
-    <div class="total-money">${amount}</div>
+    <div class="total-money" value="${amount}">${amount}</div>
   </div>`;
 
   return wallet;
