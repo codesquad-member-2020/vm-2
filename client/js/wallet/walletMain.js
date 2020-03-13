@@ -12,10 +12,12 @@ moneyWrap.addEventListener('click', (event)=> {
 
 const deliverUnitMoney = event => {
   const selectedBtn = event.target.type;
+  if (selectedBtn !== 'button') return;
+
   const selectedCnt = event.target.nextElementSibling.innerText;
   const target = event.target.nextElementSibling;
   
-  if (selectedBtn !== 'button' || selectedCnt <= 0) return;
+  if (selectedCnt <= 0) return;
   walletModel.useButtons(target, selectedCnt);
   deliverTotalAmount(event);
 }
