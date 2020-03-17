@@ -1,9 +1,12 @@
+import { addProductList, productList } from "./productListTemplate.js";
+
 class ProductListView {
-  constructor(productListModel, walletModel) {
+  constructor(productListModel, walletModel, productInfoList) {
     this.productListModel = productListModel;
     this.walletModel = walletModel;
     this.productListModel.subscribe(this.render.bind(this));
     this.walletModel.subscribe(this.getAvailableProducts.bind(this));
+    addProductList(productInfoList);
   }
 
   getAvailableProducts(data) {

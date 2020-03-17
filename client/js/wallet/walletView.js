@@ -1,7 +1,10 @@
+import addWallet from "./walletTemplate.js";
+
 class WalletView {
-  constructor(walletModel) {
+  constructor(walletModel, wallet, totalAmount) {
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
+    addWallet(wallet, totalAmount);
   }
 
   render(data) {
