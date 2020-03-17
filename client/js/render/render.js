@@ -9,7 +9,7 @@ const render = data => {
     <div class="wrap">
       ${addProductList(data.productInfoList)}
       ${addProductSelect()}
-      ${addWallet(data.wallet ,data.totalAmount)}
+      ${addWallet(data.wallet, data.totalAmount)}
     </div>`;
   const body = document.querySelector("body");
 
@@ -36,7 +36,7 @@ const productList = list => {
 
     li += `
     <li>
-    <button>
+    <button  type="button" value=${productName}>
       <div class="product-image"><span>${productIndex}</span>${productImg}</div>
       <div class="product-content">
         <span>${productPrice}</span>
@@ -77,7 +77,7 @@ const addProductSelect = () => {
 const addWallet = (currency, amount) => {
   let moneyWrap = ``;
   currency.forEach(walletInfo => {
-    const {walletAmount, numberCount} = walletInfo;
+    const { walletAmount, numberCount } = walletInfo;
 
     moneyWrap += `
     <div class="money-unit">

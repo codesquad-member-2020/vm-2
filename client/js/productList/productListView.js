@@ -13,7 +13,7 @@ class ProductListView {
     const currencyList = document.querySelectorAll(".product-content > span");
     Array.from(currencyList).forEach(currency => {
       if (Number(currency.textContent) <= selectedMoney) {
-        currency.parentElement.parentElement.parentElement.className += "active";
+        currency.parentElement.parentElement.parentElement.className = "active";
       }
     });
   }
