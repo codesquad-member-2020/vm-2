@@ -1,17 +1,19 @@
 import Observable from "../observable.js";
 
 class WalletModel extends Observable {
-  constructor() {
+  constructor(wallet, totalAmount) {
     super();
-    this.currencyCount = null
-    this.totalAmount = 0
-    this.inputMoney = 0
-    this.currency = null
+    this.wallet = wallet;
+
+    this.currencyCount = null;
+    this.totalAmount = totalAmount;
+    this.inputMoney = 0;
+    this.currency = null;
 
     this.notifyInfo = {
       target: null,
       value: null
-    }
+    };
   }
 
   deliverUnitMoney(event) {
@@ -36,14 +38,14 @@ class WalletModel extends Observable {
 
   deliverInputAmount() {
     const selectMoney = event.target.innerText;
-    
+
     this.notifyInfo.target = document.querySelector(".input-amount");
     this.inputMoney += Number(selectMoney);
 
     this.notifyInfo.value = this.inputMoney;
     this.notify(this.notifyInfo);
   }
-  
+
   deliverNotification() {
     this.notifyInfo.target = document.querySelector(".message-window ol li");
     this.currency = event.target.innerText;
@@ -70,7 +72,6 @@ class WalletModel extends Observable {
     this.notifyInfo.value = this.totalAmount;
     this.notify(this.notifyInfo);
   }
-
 }
 
 export default WalletModel;

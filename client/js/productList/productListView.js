@@ -1,22 +1,25 @@
-import { addProductList, productList } from "./productListTemplate.js";
+import { addProductList } from "./productListTemplate.js";
 
 class ProductListView {
-  constructor(productListModel, walletModel, productInfoList) {
+  constructor(productListModel, walletModel) {
     this.productListModel = productListModel;
     this.walletModel = walletModel;
     this.productListModel.subscribe(this.render.bind(this));
     this.walletModel.subscribe(this.getAvailableProducts.bind(this));
-    addProductList(productInfoList);
+    addProductList(this.productListModel.productInfoList);
   }
 
-  getAvailableProducts(data) {
-    const { selectedMoney } = data;
-    console.log("value", selectedMoney);
-
+  getAvailableProducts() {
+    const inputAmount = document.querySelector(".input-amount").textContent;
     const currencyList = document.querySelectorAll(".product-content > span");
+
     Array.from(currencyList).forEach(currency => {
-      if (Number(currency.textContent) <= selectedMoney) {
-        currency.parentElement.parentElement.parentElement.className = "active";
+      const product = currency.parentElement.parentElement.parentElement;
+
+      if (Number(currency.textContent) <= Number(inputAmount)) {
+        product.className = "active";
+      } else if (product.className === "active") {
+        product.className = "";
       }
     });
   }

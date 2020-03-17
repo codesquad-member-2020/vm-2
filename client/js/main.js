@@ -6,20 +6,20 @@ import ProductSelectView from "./productSelect/productSelectView.js";
 
 const JSON_FILE_URL = "../../server/vmData.json";
 
-const productListModel = new ProductListModel();
-const walletModel = new WalletModel();
-
 (async () => {
   const res = await fetch(JSON_FILE_URL);
   const { productInfoList, wallet, totalAmount } = await res.json();
+  console.log("total", totalAmount);
 
-  const productListView = new ProductListView(productListModel, walletModel, productInfoList);
+  const productListModel = new ProductListModel(productInfoList);
+  const walletModel = new WalletModel(wallet, totalAmount);
+  const productListView = new ProductListView(productListModel, walletModel);
   const productSelectView = new ProductSelectView(walletModel);
-  const walletView = new WalletView(walletModel, wallet, totalAmount);
-  clickEventListener();
+  const walletView = new WalletView(walletModel);
+  clickEventListener(productListModel, walletModel);
 })();
 
-const clickEventListener = () => {
+const clickEventListener = (productListModel, walletModel) => {
   const moneyWrap = document.querySelector(".money-wrap");
   const productWrap = document.querySelector(".product");
 

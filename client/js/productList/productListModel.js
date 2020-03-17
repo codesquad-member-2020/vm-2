@@ -1,8 +1,9 @@
 import Observable from "../observable.js";
 
 class ProductListModel extends Observable {
-  constructor() {
+  constructor(productInfoList) {
     super();
+    this.productInfoList = productInfoList;
 
     this.selectProductInfo = {
       name: null,
@@ -11,14 +12,18 @@ class ProductListModel extends Observable {
   }
 
   getSelectProductInfo(event) {
+    console.log("", event.target);
     if (event.target.nextElementSibling) {
+      this.selectProductInfo.name = event.target.parentElement.value;
       this.selectProductInfo.price = event.target.nextElementSibling.innerText;
     } else if (event.target.parentElement.nextElementSibling) {
+      console.log("", event.target.parentElement.parentElement);
+      this.selectProductInfo.name = event.target.parentElement.parentElement.value;
       this.selectProductInfo.price = event.target.parentElement.nextElementSibling.innerText;
     } else {
       this.selectProductInfo.price = event.target.innerText;
     }
-    console.log(this.selectProductInfo);
+
     this.notify(this.selectProductInfo);
   }
 }
