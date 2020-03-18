@@ -5,7 +5,7 @@ class ProductSeletView {
     this.productListModel = productListModel;
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
-    this.productListModel.subscribe(this.subProductPrice.bind(this));
+    this.productListModel.subscribe(this.renderProductInfo.bind(this));
     addProductSelect();
   }
 
@@ -16,17 +16,34 @@ class ProductSeletView {
     if (className === "input-amount") {
       target.innerHTML = `${value}`;
     } else if (className === "message-list") {
-      target.insertAdjacentHTML("beforeend", `<li>isMessage${value}</li>`);
+      target.innerHTML += `<li>${value}원이 투입되었습니다.</li>`;
+      target.scrollTop = target.scrollHeight;
     }
   }
 
-  subProductPrice(priceInfoData) {
-    const { name, price } = priceInfoData;
+  renderProductInfo(productInfoData) {
+    const { name, price, isActive } = productInfoData;
+    console.log("", productInfoData);
 
-    const target = document.querySelector(".input-amount");
-    const value = Number(target.innerText) - price;
+    const inputAmount = document.querySelector(".input-amount");
+    const messageList = document.querySelector(".message-list");
+    const messageWindow = document.querySelector(".message-window");
+    const calculateValue = Number(inputAmount.innerText) - price;
 
-    target.innerHTML = value;
+    if (!isActive) {
+      messageList.innerHTML += `<li>현재 투입 금액으로 구입이 불가능합니다.</li>`;
+      messageWindow.scrollTop = messageWindow.scrollHeight;
+      return;
+    } else if (calculateValue < 0) {
+      messageList.innerHTML += `<li>잔액이 부족해 ${name} 구입 실패했습니다.</li>`;
+      messageWindow.scrollTop = messageWindow.scrollHeight;
+      return;
+    }
+
+    inputAmount.innerHTML = calculateValue;
+    messageList.innerHTML += `<li>${name} 구입 성공했습니다.</li>`;
+
+    messageWindow.scrollTop = messageWindow.scrollHeight;
   }
 }
 

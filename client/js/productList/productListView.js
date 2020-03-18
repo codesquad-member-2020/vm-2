@@ -17,7 +17,10 @@ class ProductListView {
 
       if (Number(currency.textContent) <= Number(inputAmount)) {
         product.className = "active";
-      } else if (product.className === "active") {
+      } else if (
+        Number(currency.textContent) > Number(inputAmount) ||
+        product.className === "active"
+      ) {
         product.className = "";
       }
     });
