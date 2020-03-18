@@ -11,18 +11,12 @@ class ProductListModel extends Observable {
     };
   }
 
-  getSelectProductInfo(event) {
-    console.log("", event.target);
-    if (event.target.nextElementSibling) {
-      this.selectProductInfo.name = event.target.parentElement.value;
-      this.selectProductInfo.price = event.target.nextElementSibling.innerText;
-    } else if (event.target.parentElement.nextElementSibling) {
-      console.log("", event.target.parentElement.parentElement);
-      this.selectProductInfo.name = event.target.parentElement.parentElement.value;
-      this.selectProductInfo.price = event.target.parentElement.nextElementSibling.innerText;
-    } else {
-      this.selectProductInfo.price = event.target.innerText;
-    }
+  getSelectProductInfo({ target }) {
+    const buttonTarget = target.closest("button");
+    const productInfos = buttonTarget.innerText.split("\n");
+
+    this.selectProductInfo.name = buttonTarget.value;
+    this.selectProductInfo.price = productInfos[2];
 
     this.notify(this.selectProductInfo);
   }
