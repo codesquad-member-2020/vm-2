@@ -4,18 +4,16 @@ class ProductListModel extends Observable {
   constructor(productInfoList) {
     super();
     this.productInfoList = productInfoList;
-    this.saveNumber = '';
 
     this.selectProductInfo = {
       name: null,
       price: null,
-      isActive: null
+      isActive: null,
     };
   }
 
   getSelectProductInfo({ target }) {
     const buttonTarget = target.closest("button");
-    console.log("", buttonTarget);
     const productInfos = buttonTarget.innerText.split("\n");
 
     this.selectProductInfo.name = buttonTarget.value;
@@ -25,21 +23,15 @@ class ProductListModel extends Observable {
     this.notify(this.selectProductInfo);
   }
 
-  pushButtons(event) {
-    const pushBtn = event.target.innerText;
-    // const pushNum = this.saveNumber;
-    // 예외처리 1) 버튼이 아니면 x
-    console.log("pushButton", pushBtn);
-    this.saveNumber += pushBtn;
-    // 1~20
-    // if ()
-    // if (this.saveNumber.length > 2) 
-    console.log(this.saveNumber);
-    
+  pushButtons({ target }) {
+    const pushBtn = target.innerText;
+    let selectProductNumber
 
-    // ""따옴표 없애주고 문자열+문자열 한 다음에 나중에 숫자로 변경
+    selectProductNumber += pushBtn;
 
-
+    if (Number(selectProductNumber) > this.productInfoList.length) {
+      selectProductNumber = '';
+    }
   }
 }
 

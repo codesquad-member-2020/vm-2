@@ -7,7 +7,6 @@ class ProductSeletView {
     this.walletModel.subscribe(this.render.bind(this));
     this.productListModel.subscribe(this.renderProductInfo.bind(this));
     addProductSelect();
- 
   }
 
   render(walletData) {
@@ -23,15 +22,19 @@ class ProductSeletView {
   }
 
   renderProductInfo(productInfoData) {
-    const { name, price, isActive } = productInfoData;
-    console.log("", productInfoData);
+    console.log(productInfoData)
+    const { name, price, isActive, selectProductNumber } = productInfoData;
 
     const inputAmount = document.querySelector(".input-amount");
     const messageList = document.querySelector(".message-list");
     const messageWindow = document.querySelector(".message-window");
     const calculateValue = Number(inputAmount.innerText) - price;
 
-    if (!isActive) {
+    if (selectProductNumber === '') {
+      messageList.innerHTML += `<li>${selectProductNumber}번 상품은 구매할 수 없습니다.</li>`;
+      messageWindow.scrollTop = messageWindow.scrollHeight;
+      return;
+    } else if (!isActive) {
       messageList.innerHTML += `<li>현재 투입 금액으로 구입이 불가능합니다.</li>`;
       messageWindow.scrollTop = messageWindow.scrollHeight;
       return;
@@ -39,13 +42,21 @@ class ProductSeletView {
       messageList.innerHTML += `<li>잔액이 부족해 ${name} 구입 실패했습니다.</li>`;
       messageWindow.scrollTop = messageWindow.scrollHeight;
       return;
-    }
+    }  
 
     inputAmount.innerHTML = calculateValue;
     messageList.innerHTML += `<li>${name} 구입 성공했습니다.</li>`;
 
     messageWindow.scrollTop = messageWindow.scrollHeight;
   }
+
+  // renderselectProductNumber(number) {
+  //   const selectProductNumber = number;
+
+  //   if (selectProductNumber === '') {
+
+  //   }
+  // }
 }
 
 export default ProductSeletView;
