@@ -14,7 +14,7 @@ const addProductSelect = () => {
   </ul>
   </div>
   <div class="message-window">
-          <ol>
+          <ol class="message-list">
             <li>sample</li>
           </ol>
         </div>

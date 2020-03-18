@@ -4,13 +4,19 @@ class WalletView {
   constructor(walletModel) {
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
-    console.log(this.walletModel);
+
     addWallet(this.walletModel.wallet, this.walletModel.totalAmount);
+    this.moneyCount = "money-count";
+    this.totalMoney = "total-money";
   }
 
   render(data) {
     const { target, value } = data;
-    target.innerHTML = `${value}`;
+    const className = target.className;
+
+    if (className === this.moneyCount || className === this.totalMoney) {
+      target.innerHTML = `${value}`;
+    }
   }
 }
 

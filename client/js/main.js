@@ -9,7 +9,6 @@ const JSON_FILE_URL = "../../server/vmData.json";
 (async () => {
   const res = await fetch(JSON_FILE_URL);
   const { productInfoList, wallet, totalAmount } = await res.json();
-  console.log("total", totalAmount);
 
   const productListModel = new ProductListModel(productInfoList);
   const walletModel = new WalletModel(wallet, totalAmount);
@@ -24,9 +23,7 @@ const clickEventListener = (productListModel, walletModel) => {
   const productWrap = document.querySelector(".product");
 
   moneyWrap.addEventListener("click", event => {
-    walletModel.deliverUnitMoney(event);
-    walletModel.deliverInputAmount(event);
-    walletModel.deliverNotification(event);
+    walletModel.selectedBtnType(event);
   });
 
   productWrap.addEventListener("click", event => productListModel.getSelectProductInfo(event));

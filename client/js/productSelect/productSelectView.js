@@ -9,8 +9,13 @@ class ProductSeletView {
 
   render(data) {
     const { target, value } = data;
-    target.innerHTML = `${value}`;
-    console.log(data);
+    const className = target.className;
+
+    if (className === "input-amount") {
+      target.innerHTML = `${value}`;
+    } else if (className === "message-list") {
+      target.insertAdjacentHTML("beforeend", `<li>isMessage${value}</li>`);
+    }
   }
 }
 
