@@ -36,6 +36,7 @@
 .product > li > button {
   width: 100%;
   background-color: #d1d1d1;
+  transition: all 0.3s ease;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -45,7 +46,7 @@
 }
 
 .product > li.active > button {
-  box-shadow: 1px 1px 10px 1px rgba(255,0,0,0.5);
+  box-shadow: 1px 1px 10px 1px rgba(255, 0, 0, 0.5);
 }
 
 .product-image {
@@ -73,7 +74,7 @@
   width: 137%;
   height: 20px;
   line-height: 20px;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 }
 
@@ -83,7 +84,7 @@
   right: 6px;
   display: block;
   clear: both;
-  content:'원';
+  content: "원";
 }
 
 .product-content > span {
@@ -111,14 +112,14 @@
 .input-amount:after {
   display: inline-block;
   clear: both;
-  content: '원';
+  content: "원";
   margin: 0 6px;
 }
 
 .select-number {
   margin-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px 3px rgba(0,0,0,0.13);
+  box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.13);
 }
 
 .select-number > ul {
@@ -139,7 +140,7 @@
 
 .select-number .select-button button {
   font-size: 15px;
-  background-color: #87A5FF;
+  background-color: #87a5ff;
 }
 
 .select-number > ul > li > button {
@@ -147,7 +148,7 @@
   height: 100%;
   color: #fff;
   font-size: 20px;
-  background: #A6A6A6;
+  background: #a6a6a6;
   border-radius: 6px;
 }
 
@@ -158,7 +159,7 @@
 }
 
 .select-number .select-button > button:hover {
-  background-color: #6C84CC;
+  background-color: #6c84cc;
 }
 
 .message-window {
@@ -187,7 +188,7 @@
 .money-unit button {
   color: #fff;
   font-size: 13px;
-  background-color: #A6A6A6;
+  background-color: #a6a6a6;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -196,7 +197,7 @@
   display: inline-block;
   margin-left: 2px;
   clear: both;
-  content: '원';
+  content: "원";
 }
 
 .money-unit button:hover {
@@ -219,7 +220,7 @@
   margin-top: -43px;
   display: block;
   clear: both;
-  content: '개';
+  content: "개";
 }
 
 .total-money {
@@ -233,6 +234,6 @@
 .total-money:after {
   display: inline-block;
   clear: both;
-  content: '원';
+  content: "원";
   margin-left: 6px;
 }

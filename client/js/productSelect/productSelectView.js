@@ -1,17 +1,17 @@
-import addWallet from "./walletTemplate.js";
+import addProductSelect from "./productSelectTemplate.js";
 
-class WalletView {
+class ProductSeletView {
   constructor(walletModel) {
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
-    console.log(this.walletModel);
-    addWallet(this.walletModel.wallet, this.walletModel.totalAmount);
+    addProductSelect();
   }
 
   render(data) {
     const { target, value } = data;
     target.innerHTML = `${value}`;
+    console.log(data);
   }
 }
 
-export default WalletView;
+export default ProductSeletView;
