@@ -4,7 +4,6 @@ class ProductListView {
   constructor(productListModel, walletModel) {
     this.productListModel = productListModel;
     this.walletModel = walletModel;
-    this.productListModel.subscribe(this.render.bind(this));
     this.walletModel.subscribe(this.getAvailableProducts.bind(this));
     addProductList(this.productListModel.productInfoList);
   }

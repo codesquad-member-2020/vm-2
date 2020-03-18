@@ -1,14 +1,16 @@
 import addProductSelect from "./productSelectTemplate.js";
 
 class ProductSeletView {
-  constructor(walletModel) {
+  constructor(productListModel, walletModel) {
+    this.productListModel = productListModel;
     this.walletModel = walletModel;
     this.walletModel.subscribe(this.render.bind(this));
+    this.productListModel.subscribe(this.subProductPrice.bind(this));
     addProductSelect();
   }
 
-  render(data) {
-    const { target, value } = data;
+  render(walletData) {
+    const { target, value } = walletData;
     const className = target.className;
 
     if (className === "input-amount") {
@@ -16,6 +18,15 @@ class ProductSeletView {
     } else if (className === "message-list") {
       target.insertAdjacentHTML("beforeend", `<li>isMessage${value}</li>`);
     }
+  }
+
+  subProductPrice(priceInfoData) {
+    const { name, price } = priceInfoData;
+
+    const target = document.querySelector(".input-amount");
+    const value = Number(target.innerText) - price;
+
+    target.innerHTML = value;
   }
 }
 
