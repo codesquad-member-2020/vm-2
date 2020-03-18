@@ -7,22 +7,19 @@ class ProductListModel extends Observable {
 
     this.selectProductInfo = {
       name: null,
-      price: null
+      price: null,
+      isActive: null
     };
   }
 
-  getSelectProductInfo(event) {
-    console.log("", event.target);
-    if (event.target.nextElementSibling) {
-      this.selectProductInfo.name = event.target.parentElement.value;
-      this.selectProductInfo.price = event.target.nextElementSibling.innerText;
-    } else if (event.target.parentElement.nextElementSibling) {
-      console.log("", event.target.parentElement.parentElement);
-      this.selectProductInfo.name = event.target.parentElement.parentElement.value;
-      this.selectProductInfo.price = event.target.parentElement.nextElementSibling.innerText;
-    } else {
-      this.selectProductInfo.price = event.target.innerText;
-    }
+  getSelectProductInfo({ target }) {
+    const buttonTarget = target.closest("button");
+    console.log("", buttonTarget);
+    const productInfos = buttonTarget.innerText.split("\n");
+
+    this.selectProductInfo.name = buttonTarget.value;
+    this.selectProductInfo.price = productInfos[2];
+    this.selectProductInfo.isActive = buttonTarget.parentElement.className === "active";
 
     this.notify(this.selectProductInfo);
   }
