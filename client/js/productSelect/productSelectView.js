@@ -7,6 +7,7 @@ class ProductSeletView {
     this.walletModel.subscribe(this.render.bind(this));
     this.productListModel.subscribe(this.renderProductInfo.bind(this));
     addProductSelect();
+ 
   }
 
   render(walletData) {
