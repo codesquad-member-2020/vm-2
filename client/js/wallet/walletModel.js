@@ -14,16 +14,19 @@ class WalletModel extends Observable {
     }
   }
 
-  deliverUnitMoney(event) {
+  selectedBtnType(event) {
     const selectedBtn = event.target.type;
+    const nextElement = event.target.nextElementSibling; 
     if (selectedBtn !== "button") return;
 
-    const selectedCnt = event.target.nextElementSibling.innerText;
-    const target = event.target.nextElementSibling;
+    const selectedCnt = nextElement.innerText;
+    const target = nextElement;
 
     if (selectedCnt <= 0) return;
     this.spendMoney(target, selectedCnt);
     this.deliverTotalAmount();
+    this.deliverInputAmount();
+    this.deliverNotification();
   }
 
   deliverTotalAmount() {
@@ -31,25 +34,33 @@ class WalletModel extends Observable {
     this.totalAmount = Number(totalMoneyWrap.innerText);
     const selectedMoney = event.target.innerText;
 
-    this.calculateTotalMoney(totalMoneyWrap, selectedMoney);
+    this.reduceTotalMoney(totalMoneyWrap, selectedMoney);
   }
 
   deliverInputAmount() {
-    const selectMoney = event.target.innerText;
+    const selectedMoney = event.target.innerText;
     
     this.notifyInfo.target = document.querySelector(".input-amount");
-    this.inputMoney += Number(selectMoney);
+    this.inputMoney += Number(selectedMoney);
 
     this.notifyInfo.value = this.inputMoney;
     this.notify(this.notifyInfo);
   }
   
   deliverNotification() {
-    this.notifyInfo.target = document.querySelector(".message-window ol li");
+    this.notifyInfo.target = document.querySelector(".message-window ol");
     this.currency = event.target.innerText;
-
+    
     this.notifyInfo.value = this.currency;
+    
+    
     this.notify(this.notifyInfo);
+  }
+
+  messageNotification() {
+    console.log(this.notifyInfo.value)
+
+    this.deliverNotification(this.notifyInfo.target,this.currency,this.notifyInfo.value);
   }
 
   spendMoney(target, value) {
@@ -62,7 +73,7 @@ class WalletModel extends Observable {
     this.notify(this.notifyInfo);
   }
 
-  calculateTotalMoney(target, currency) {
+  reduceTotalMoney(target, currency) {
     this.notifyInfo.target = target;
     this.totalAmount -= currency;
     if (this.totalAmount < 0) return;
@@ -70,7 +81,6 @@ class WalletModel extends Observable {
     this.notifyInfo.value = this.totalAmount;
     this.notify(this.notifyInfo);
   }
-
 }
 
 export default WalletModel;
