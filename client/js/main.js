@@ -21,10 +21,9 @@ const JSON_FILE_URL = "../../server/vmData.json";
 const clickEventListener = (productListModel, walletModel) => {
   const moneyWrap = document.querySelector(".money-wrap");
   const productWrap = document.querySelector(".product");
-  const pushButtonsWrap = document.querySelector(".select-number ul");
+  const selectProductNumberWrap = document.querySelector(".select-number ul");
   
   moneyWrap.addEventListener("click", event => walletModel.selectedBtnType(event));
-  pushButtonsWrap.addEventListener("click", event => productListModel.pushButtons(event));
+  selectProductNumberWrap.addEventListener("click", event => productListModel.selectProductNumber(event));
   productWrap.addEventListener("click", event => productListModel.getSelectProductInfo(event));
-  
 };

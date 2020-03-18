@@ -23,11 +23,11 @@ class ProductListModel extends Observable {
     this.notify(this.selectProductInfo);
   }
 
-  pushButtons({ target }) {
-    const pushBtn = target.innerText;
+  selectProductNumber({ target }) {
+    const getSelectNumber = target.innerText;
     let selectProductNumber
 
-    selectProductNumber += pushBtn;
+    selectProductNumber += getSelectNumber;
 
     if (Number(selectProductNumber) > this.productInfoList.length) {
       selectProductNumber = '';
