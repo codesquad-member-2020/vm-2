@@ -25,11 +25,6 @@ class ProductListView {
       }
     });
   }
-
-  render(data) {
-    const { name, price } = data;
-    console.log(data);
-  }
 }
 
 export default ProductListView;

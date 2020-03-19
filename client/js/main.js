@@ -22,8 +22,10 @@ const clickEventListener = (productListModel, walletModel) => {
   const moneyWrap = document.querySelector(".money-wrap");
   const productWrap = document.querySelector(".product");
   const selectProductNumberWrap = document.querySelector(".select-number ul");
-  
+
+  productWrap.addEventListener("click", event =>
+    productListModel.selectProduct(event.target.closest("button"))
+  );
+  selectProductNumberWrap.addEventListener("click", event => productListModel.selectNumber(event));
   moneyWrap.addEventListener("click", event => walletModel.selectedBtnType(event));
-  selectProductNumberWrap.addEventListener("click", event => productListModel.selectProductNumber(event));
-  productWrap.addEventListener("click", event => productListModel.getSelectProductInfo(event));
 };

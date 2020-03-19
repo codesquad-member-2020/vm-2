@@ -4,7 +4,7 @@ const addProductSelect = () => {
 
   const productSelect = `
   <div class="product-select">
-    <div class="show-select-number">12</div>
+    <div class="show-select-number"></div>
     <div class="input-amount"></div>
     <div class="select-number">
     <ul>

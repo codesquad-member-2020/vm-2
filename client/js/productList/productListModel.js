@@ -8,29 +8,38 @@ class ProductListModel extends Observable {
     this.selectProductInfo = {
       name: null,
       price: null,
-      isActive: null,
+      isActive: null
     };
   }
 
-  getSelectProductInfo({ target }) {
-    const buttonTarget = target.closest("button");
-    const productInfos = buttonTarget.innerText.split("\n");
-
+  getSelectProductInfo(buttonTarget, number) {
     this.selectProductInfo.name = buttonTarget.value;
-    this.selectProductInfo.price = productInfos[2];
+    this.selectProductInfo.price = number;
     this.selectProductInfo.isActive = buttonTarget.parentElement.className === "active";
-
     this.notify(this.selectProductInfo);
   }
 
-  selectProductNumber({ target }) {
+  selectProduct(buttonTarget) {
+    const productInfos = buttonTarget.innerText.split("\n");
+
+    this.getSelectProductInfo(buttonTarget, productInfos[2]);
+  }
+
+  selectNumber({ target }) {
     const getSelectNumber = target.innerText;
-    let selectProductNumber
+    const numberWindow = document.querySelector(".show-select-number");
+    let selectProductNumber = "";
 
-    selectProductNumber += getSelectNumber;
-
-    if (Number(selectProductNumber) > this.productInfoList.length) {
-      selectProductNumber = '';
+    if (getSelectNumber === "입력") {
+      const productList = document.querySelectorAll(".product > li > button");
+      this.selectProduct(productList[Number(numberWindow.innerText) - 1]);
+      numberWindow.innerHTML = "";
+    } else if (getSelectNumber === "취소") {
+      selectProductNumber = "";
+      numberWindow.innerHTML = selectProductNumber;
+    } else {
+      selectProductNumber += getSelectNumber;
+      numberWindow.innerHTML += selectProductNumber;
     }
   }
 }
