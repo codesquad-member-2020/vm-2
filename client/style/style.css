@@ -100,13 +100,31 @@
   border-radius: 3px;
 }
 
+.product-select:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.show-select-number {
+  width: 15%;
+  margin-right: 3%;
+  text-align: center;
+  outline: 1px solid red;
+}
+
+.show-select-number,
 .input-amount {
-  margin-bottom: 20px;
+  float: left;
+  border-radius: 5px;
+  background-color: #fff;
   height: 40px;
   line-height: 40px;
+}
+
+.input-amount {
+  width: 82%;
   text-align: right;
-  background-color: #fff;
-  border-radius: 5px;
 }
 
 .input-amount:after {
