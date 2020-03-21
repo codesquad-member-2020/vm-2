@@ -6,7 +6,7 @@ const addWallet = (currency, amount) => {
     moneyWrap += `
     <div class="money-unit">
     <button type="button" value="${walletAmount}">${walletAmount}</button>
-    <span value="${numberCount}">${numberCount}</span></div>`;
+    <span class="money-count" value="${numberCount}">${numberCount}</span></div>`;
   });
 
   const wallet = `

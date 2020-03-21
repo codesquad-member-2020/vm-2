@@ -31,12 +31,33 @@ class WalletModel extends Observable {
     this.deliverNotification();
   }
 
+  spendMoney(target, value) {
+    this.notifyInfo.target = target;
+    this.currencyCount = Number(value);
+    if (this.currencyCount <= 0) return;
+    this.currencyCount -= 1;
+
+    this.notifyInfo.value = this.currencyCount;
+
+    this.notify(this.notifyInfo);
+  }
+
   deliverTotalAmount() {
     const totalMoneyWrap = document.querySelector(".total-money");
     this.totalAmount = Number(totalMoneyWrap.innerText);
     const selectedMoney = event.target.innerText;
 
     this.reduceTotalMoney(totalMoneyWrap, selectedMoney);
+  }
+
+  reduceTotalMoney(target, currency) {
+    this.notifyInfo.target = target;
+    this.totalAmount -= currency;
+    if (this.totalAmount < 0) return;
+
+    this.notifyInfo.value = this.totalAmount;
+
+    this.notify(this.notifyInfo);
   }
 
   deliverInputAmount() {
@@ -46,40 +67,16 @@ class WalletModel extends Observable {
     this.inputMoney += Number(selectedMoney);
 
     this.notifyInfo.value = this.inputMoney;
+
     this.notify(this.notifyInfo);
   }
 
   deliverNotification() {
-    this.notifyInfo.target = document.querySelector(".message-window ol");
+    this.notifyInfo.target = document.querySelector(".message-list");
     this.currency = event.target.innerText;
 
     this.notifyInfo.value = this.currency;
 
-    this.notify(this.notifyInfo);
-  }
-
-  messageNotification() {
-    console.log(this.notifyInfo.value);
-
-    this.deliverNotification(this.notifyInfo.target, this.currency, this.notifyInfo.value);
-  }
-
-  spendMoney(target, value) {
-    this.notifyInfo.target = target;
-    this.currencyCount = Number(value);
-    if (this.currencyCount <= 0) return;
-    this.currencyCount -= 1;
-
-    this.notifyInfo.value = this.currencyCount;
-    this.notify(this.notifyInfo);
-  }
-
-  reduceTotalMoney(target, currency) {
-    this.notifyInfo.target = target;
-    this.totalAmount -= currency;
-    if (this.totalAmount < 0) return;
-
-    this.notifyInfo.value = this.totalAmount;
     this.notify(this.notifyInfo);
   }
 }

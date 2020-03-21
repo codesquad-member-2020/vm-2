@@ -4,7 +4,6 @@ class ProductListView {
   constructor(productListModel, walletModel) {
     this.productListModel = productListModel;
     this.walletModel = walletModel;
-    this.productListModel.subscribe(this.render.bind(this));
     this.walletModel.subscribe(this.getAvailableProducts.bind(this));
     addProductList(this.productListModel.productInfoList);
   }
@@ -18,7 +17,10 @@ class ProductListView {
 
       if (Number(currency.textContent) <= Number(inputAmount)) {
         product.className = "active";
-      } else if (product.className === "active") {
+      } else if (
+        Number(currency.textContent) > Number(inputAmount) ||
+        product.className === "active"
+      ) {
         product.className = "";
       }
     });
