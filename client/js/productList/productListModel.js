@@ -4,25 +4,43 @@ class ProductListModel extends Observable {
   constructor(productInfoList) {
     super();
     this.productInfoList = productInfoList;
+    this.inputMoney = 0;
 
     this.selectProductInfo = {
       name: null,
-      price: null,
-      isActive: null
+      leftMoney: 0,
+      isActive: false,
+      isNotAvailablePurchase: false
     };
   }
 
   getSelectProductInfo(buttonTarget, number) {
-    this.selectProductInfo.name = buttonTarget.value;
-    this.selectProductInfo.price = number;
-    this.selectProductInfo.isActive = buttonTarget.parentElement.className === "active";
+    this.selectProductInfo.name = buttonTarget ? buttonTarget.value : null;
+    this.selectProductInfo.leftMoney = number;
+    this.selectProductInfo.isActive = buttonTarget
+      ? buttonTarget.parentElement.className === "active"
+      : false;
+
     this.notify(this.selectProductInfo);
+  }
+
+  deliverInputAmount({ target }) {
+    const selectedMoney = target.innerText;
+
+    this.inputMoney += Number(selectedMoney);
+    this.getSelectProductInfo(null, this.inputMoney);
   }
 
   selectProduct(buttonTarget) {
     const productInfos = buttonTarget.innerText.split("\n");
 
-    this.getSelectProductInfo(buttonTarget, productInfos[2]);
+    if (this.inputMoney < productInfos[2]) {
+      this.selectProductInfo.isNotAvailablePurchase = true;
+      return;
+    }
+
+    this.inputMoney -= productInfos[2];
+    this.getSelectProductInfo(buttonTarget, this.inputMoney);
   }
 
   selectNumber({ target }) {

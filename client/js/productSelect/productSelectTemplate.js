@@ -16,7 +16,7 @@ const addProductSelect = () => {
   </div>
   <div class="message-window">
     <ol class="message-list">
-      <li>sample</li>
+      <li>자판기가 시작되었습니다.</li>
     </ol>
   </div>
   </div>`;
